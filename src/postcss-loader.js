@@ -99,12 +99,14 @@ export default {
       plugins.unshift(scopedPlugin(this.scoped))
     }
 
+    const extractFile = typeof options.extract === 'string' ? options.extract : this.id
+
     const postcssOpts = {
       ...this.options.postcss,
       ...config.options,
       // Followings are never modified by user config config
       from: this.id,
-      to: this.id,
+      to: extractFile,
       map: this.sourceMap ?
         shouldExtract ?
           { inline: false, annotation: false } :

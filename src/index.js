@@ -91,6 +91,10 @@ export default (options = {}) => {
     },
 
     async transform(code, id) {
+      if (postcssLoaderOptions.extract === true) {
+        this.warn('It is not recommended to set \'extract: true\' because PostCSS plugins will not receive the proper settings.')
+      }
+
       let scoped
       if (hasQuery(id)) {
         const query = parseQuery(id)

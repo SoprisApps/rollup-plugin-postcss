@@ -48,10 +48,12 @@ import style from './style.css'
 It will also automatically use local PostCSS config files.
 
 ### Extract CSS
+To extract the processed CSS file, set the `extract` configuration option to
+the path where the file should be saved.
 
 ```js
 postcss({
-  extract: true
+  extract: './dist/mystyles.css'
 })
 ```
 
@@ -98,7 +100,7 @@ PostCSS Plugins.
 Type: `boolean` `object`<br>
 Default: `true`
 
-Inject CSS into `<head>`, it's always `false` when `extract: true`.
+Inject CSS into `<head>`, it's always `false` when `extract` is not `false`.
 
 You can also use it as options for [`style-inject`](https://github.com/egoist/style-inject#options).
 
@@ -107,9 +109,10 @@ You can also use it as options for [`style-inject`](https://github.com/egoist/st
 Type: `boolean` `string`<br>
 Default: `false`
 
-Extract CSS to the same location where JS file is generated but with `.css` extension.
+Extract CSS to a separate file.  The recommended settings are either `false`, to not extract the CSS file, or
+a path to the location where the file should be saved.
 
-You can also set it to an absolute path.
+Setting this option to `true` will extract CSS to the same location where JS file is generated but with `.css` extension.  Unfortunately, PostCSS plugins might behave incorrectly in this case.  See [Issue #65](https://github.com/egoist/rollup-plugin-postcss/issues/65) for more details.
 
 ### modules
 
